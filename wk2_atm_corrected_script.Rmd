@@ -47,7 +47,7 @@ PkgToLoad <- c("raster", "rgdal", "ggplot2", "devtools", "sf")
 install.packages(PkgToLoad)
 ```
 
-```{r, include=TRUE, eval=TRUE}
+```{r, include=TRUE, eval=TRUE, results = 'hide'}
 # Load the packages
 lapply(PkgToLoad, library, character.only = TRUE)
 ```
@@ -78,18 +78,19 @@ lsMeta <- stackMeta(metaData)
 # Correct DN to at-surface-reflecatance with DOS (Chavez decay model)
 l8_boa_ref <- radCor(lsMeta, metaData, method = "dos")
 
+# Export raster to folder
 writeRaster(l8_boa_ref, datatype="FLT4S", filename = "data\\wk2_results\\l8_boa_ref.tif", format = "GTiff", overwrite=TRUE)
 ```
 
 Afterwards, load the image in QGis. Compare the file 'l8_boa_ref' and the file 'l8_radiance' in terms of quality. 
 
-![Figure 1. Left: Bottom of Atmosphere scene. Right: Radiance values scene. Landsat 8. ](C:\\Users\\ulloa-to\\git\\Advanced_Remote_sensing_HM\\week_2\\images\\radiance_boa_l8.png)
+![Figure 1. Left: Bottom of Atmosphere scene. Right: Radiance values scene. Landsat 8. ](C:\\Users\\ulloa-to\\git\\Advanced_Remote_sensing_HM\\images\\radiance_boa_l8.png)
 
 Load the BOA-Landsat8 image as a 'rasterBrick'.
 
 ```{r, include=TRUE, eval=TRUE}
 # import the corrected boa image
-l8_boa_br <- raster("data/wk2_results/l8_boa_ref.tif")
+l8_boa_br <- brick("data/wk2_results/l8_boa_ref.tif")
 ```
 
 Load the vector file that shows a subset of the AOI and crop the Landsat corrected image. 
@@ -100,7 +101,7 @@ aoi <- readOGR("data\\vector", "aoi_beirut")
 ```
 
 In case the Projection of the vector and the raster do not coincide, reproject the vector file before cropping. 
-```{r, include=TRUE, eval=TRUE}
+```{r, include=TRUE, eval=FALSE}
 # Check the projection of the vector
 crs(aoi)
 
@@ -113,23 +114,19 @@ aoi <- spTransform(aoi, crs(l8_boa_br))
 # Crop all rasters to the extent of the aoi
 l8_boa_cr <- crop(l8_boa_br, aoi)
 
-# plot
-plotRGB(l8_boa_cr, r=4, g=3, b=2, axes=TRUE, stretch="lin", main = 
-          "Bottom of Atmosphere Reflectance. Landsat 8")
+# Export raster to folder
+writeRaster(l8_boa_cr, datatype="FLT4S", filename = "data\\wk2_results\\l8_boa_cr.tif", format = "GTiff", overwrite=TRUE)
+
 ```
 
-```{r, include=FALSE, eval=FALSE}
+```{r, include=FALSE, eval=TRUE}
 # Import the boa_reflectance cropped file
 l8_boa_cr <- brick("data\\wk2_results/l8_boa_cr.tif")
-# plot
+```
+
+```{r, include=TRUE, eval=TRUE}
+# Plot
 plotRGB(l8_boa_cr, r=4, g=3, b=2, axes=TRUE, stretch="lin", main = 
           "Bottom of Atmosphere Reflectance. Landsat 8")
 ```
-
-```{r, include=FALSE, eval=FALSE}
-# why twice?
-plotRGB(l8_boa_cr, r=4, g=3, b=2, axes=TRUE, stretch="lin", main = 
-          "Bottom of Atmosphere Reflectance. Landsat 8")
-```
-
 
