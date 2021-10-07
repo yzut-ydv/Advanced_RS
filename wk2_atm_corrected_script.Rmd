@@ -1,5 +1,5 @@
 ---
-title: "Atmospheric correction and cloud masking"
+title: "Atmospheric correction"
 author: "Yrneh Ulloa"
 date: "7 October 2021"
 output: html_document
