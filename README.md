@@ -5,10 +5,10 @@ Repo for the Master course on Advanced Remote Sensing in the faculty of Geoinfor
 Authors: Yrneh Ulloa, Severin Herzsprung
 
 #### [Week 1](https://github.com/yzut-ydv/Advanced_Remote_sensing_HM/blob/main/wk1_raster_processing_python.ipynb)
-Learning basic pre-processing of raster data using Python
+Learning basic pre-processing of raster data using Python.
 
 #### [Week 2]()
-Atmospheric correction of satellite images
+Atmospheric correction of satellite images.
 
 #### [Week 3](https://github.com/yzut-ydv/Advanced_Remote_sensing_HM/blob/main/wk3%264_supervised_classification_with_super-pixel_segmentation.ipynb)
 Creation of training polygons for classification of optical data. Afterwards, segmentation of a satellite image. 
