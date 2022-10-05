@@ -11,7 +11,7 @@ Learning basic pre-processing of raster data using Python.
 Atmospheric correction of satellite images.
 
 #### [Week 3](https://github.com/yzut-ydv/Advanced_Remote_sensing_HM/blob/main/wk3%264_supervised_classification_with_super-pixel_segmentation.ipynb)
-Creation of training polygons for classification of optical data. Afterwards, segmentation of a satellite image. 
+Segmentation of a satellite image. Creation of training data.
 
 #### [Week 4](https://github.com/yzut-ydv/Advanced_Remote_sensing_HM/blob/main/wk3%264_supervised_classification_with_super-pixel_segmentation.ipynb)
 Supervised classification using Random Forest.
